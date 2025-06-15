@@ -1,0 +1,693 @@
+/* Estilos Padrão (Tema Claro) */
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5; /* Fundo claro da página */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /* Garante que não haja margens extras */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+    color: #333; /* Cor do texto padrão */
+}
+
+.container {
+    background: #fff; /* Fundo claro do contêiner */
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 320px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave */
+    position: relative; /* Para posicionar o toggle de tema */
+}
+
+/* Aumenta a largura do container quando o gerenciador de senhas está visível */
+.container:has(#passwordManagerSection[style*="display: block"]) {
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Estilos para o toggle de tema */
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.theme-icon {
+    font-size: 14px;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333; /* Cor do título */
+    transition: color 0.3s ease;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    color: #555; /* Cor dos rótulos */
+    transition: color 0.3s ease;
+}
+
+/* Estilo geral para inputs de texto/password, excluindo checkboxes */
+input[type="text"],
+input[type="password"],
+input[type="url"], /* Adicionado para o campo URL */
+input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura total */
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Estilos para o medidor de força da senha */
+meter {
+    width: 100%;
+    height: 10px;
+    margin-top: 0.3rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+meter::-webkit-meter-optimum-value { background: #4CAF50; } /* Verde para excelente/boa */
+meter::-webkit-meter-suboptimum-value { background: #FFC107; } /* Amarelo para razoável */
+meter::-webkit-meter-even-less-good-value { background: #dc3545; } /* Vermelho para fraca/muito fraca */
+meter::-webkit-meter-bar { background: #ddd; } /* Fundo da barra */
+
+meter::-moz-meter-bar { background: #ddd; } /* Firefox */
+meter::-moz-meter-optimum { background: #4CAF50; }
+meter::-moz-meter-suboptimum { background: #FFC107; }
+meter::-moz-meter-even-less-good { background: #dc3545; }
+
+
+/* Textos de força da senha */
+#userStrengthText,
+#entryStrengthText { /* Aplicar a ambos os textos de força da senha */
+    margin: 0.3rem 0 0 0;
+    font-weight: bold;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+/* Estilos para os botões de Login e Cadastrar */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.form-actions button {
+    flex-grow: 1;
+    width: auto;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-actions button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Dark Mode Styles --- */
+.dark-mode {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+.dark-mode .container {
+    background: #2c2c2c;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.dark-mode h2 {
+    color: #eee;
+}
+
+.dark-mode label {
+    color: #bbb;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="password"],
+.dark-mode input[type="url"] {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+.dark-mode input:focus {
+    border-color: #66b3ff;
+}
+
+/* Ajustes para o medidor de força no Dark Mode */
+.dark-mode meter {
+    border-color: #444;
+}
+.dark-mode meter::-webkit-meter-bar { background: #444; }
+.dark-mode meter::-moz-meter-bar { background: #444; }
+
+/* Textos de força da senha no Dark Mode */
+.dark-mode #userStrengthText,
+.dark-mode #entryStrengthText {
+    color: #bbb;
+}
+
+.dark-mode .form-actions button {
+    background-color: #0056b3;
+}
+
+.dark-mode .form-actions button:hover {
+    background-color: #003d80;
+}
+
+/* Estilos para o grupo de input e switch da senha */
+.password-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.password-input-group input[type="password"],
+.password-input-group input[type="text"] {
+    width: 100%;
+    flex-grow: 1;
+    padding-right: 0.6rem;
+}
+
+/* Estilos para o botão de toggle de senha (switch) */
+.switch {
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0 !important; /* Força largura zero */
+    height: 0 !important; /* Força altura zero */
+    padding: 0 !important;
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #007bff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Estilos para a palavra "mostrar" */
+.mostrar-texto {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: -5px;
+    margin-bottom: 5px;
+}
+
+/* Dark Mode para o switch */
+.dark-mode .slider {
+    background-color: #555;
+}
+
+.dark-mode input:checked + .slider {
+    background-color: #66b3ff;
+}
+
+.dark-mode input:checked + .slider:before {
+    background-color: #eee;
+}
+
+/* Dark Mode para a palavra "mostrar" */
+.dark-mode .mostrar-texto {
+    color: #bbb;
+}
+
+/* --- ESTILOS DO CRUD DE SENHAS --- */
+
+/* Seção de Gerenciamento de Senhas */
+#passwordManagerSection {
+    margin-top: 2rem;
+    /* Por padrão, o display é 'none' no HTML e controlado pelo JS */
+}
+
+.manager-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin: 1rem 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+#addPasswordBtn, #exportPasswordsBtn, #setup2FABtn, #inicio {
+    width: auto; /* Anula o 100% dos botões de login/cadastro */
+    padding: 0.6rem 1rem;
+    color: white; /* Garante cor do texto branca */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+#addPasswordBtn {
+    background-color: #28a745; /* Verde para Adicionar */
+}
+
+#addPasswordBtn:hover {
+    background-color: #218838;
+}
+
+#exportPasswordsBtn {
+    background-color: #17a2b8; /* Azul claro para Exportar */
+}
+
+#exportPasswordsBtn:hover {
+    background-color: #138496;
+}
+
+#setup2FABtn {
+    background-color: #6f42c1; /* Roxo para 2FA */
+}
+
+#setup2FABtn:hover {
+    background-color: #5a32a3;
+}
+
+#inicio {
+    background-color: #fd7e14; /* Laranja para o botão Inicio */
+}
+
+#inicio:hover {
+    background-color: #e96b02;
+}
+
+@media (max-width: 480px) {
+    .manager-actions {
+        flex-direction: column;
+    }
+    
+    #addPasswordBtn, #exportPasswordsBtn, #setup2FABtn {
+        width: 100%;
+    }
+}
+
+/* Lista de Senhas (AJUSTADO PARA LAYOUT HORIZONTAL DE CARDS) */
+.password-list {
+    margin-top: 1rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    width: 100%;
+    overflow-x: auto;
+    display: table;
+    border-collapse: collapse;
+}
+
+.dark-mode .password-list {
+    background-color: #3a3a3a;
+    border-color: #444;
+}
+
+#noPasswordsMessage {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 1rem;
+}
+
+.dark-mode #noPasswordsMessage {
+    color: #999;
+}
+
+.password-header {
+    display: table-row;
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.password-header > div {
+    display: table-cell;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.password-item {
+    display: table-row;
+    border-bottom: 1px solid #eee;
+}
+
+.password-item:hover {
+    background-color: #f5f5f5;
+}
+
+.password-item > div {
+    display: table-cell;
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.dark-mode .password-header {
+    background-color: #333;
+    color: #eee;
+}
+
+.dark-mode .password-header > div {
+    border-bottom-color: #555;
+}
+
+.dark-mode .password-item > div {
+    border-bottom-color: #444;
+}
+
+.dark-mode .password-item:hover {
+    background-color: #3a3a3a;
+}
+
+.password-details {
+    flex-grow: 1; /* Permite que os detalhes ocupem espaço disponível */
+    width: 100%; /* Garante que o conteúdo de detalhes ocupe a largura do item */
+}
+
+.password-details h4 {
+    margin: 0 0 0.5rem 0;
+    color: #007bff; /* Título da senha */
+    font-size: 1.1rem;
+    text-align: left; /* Garante que o título não seja centralizado */
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+.dark-mode .password-details h4 {
+    color: #66b3ff;
+}
+
+.password-details p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: #555;
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+.dark-mode .password-details p {
+    color: #bbb;
+}
+
+.password-details a {
+    color: #007bff;
+    text-decoration: none;
+    word-wrap: break-word; /* Quebra URLs longas */
+}
+
+.dark-mode .password-details a {
+    color: #66b3ff;
+}
+
+.password-details a:hover {
+    text-decoration: underline;
+}
+
+.hidden-password {
+    font-family: monospace; /* Para senhas, usar fonte monoespaçada */
+}
+
+.copy-password-btn, .show-password-btn {
+    background-color: #6c757d; /* Cinza para Copiar/Mostrar */
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin: 0 2px;
+    transition: background-color 0.2s ease;
+    width: auto; /* Anula herança de 100% */
+    display: inline-block;
+}
+
+.copy-password-btn:hover, .show-password-btn:hover {
+    background-color: #5a6268;
+}
+
+.dark-mode .copy-password-btn, .dark-mode .show-password-btn {
+    background-color: #888;
+}
+.dark-mode .copy-password-btn:hover, .dark-mode .show-password-btn:hover {
+    background-color: #777;
+}
+
+.column-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.column-actions .edit-btn,
+.column-actions .delete-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 2px;
+}
+
+.edit-btn {
+    background-color: #ffc107; /* Amarelo para Editar */
+    color: #333; /* Texto escuro para contraste */
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.dark-mode .edit-btn {
+    background-color: #e0a800;
+    color: #eee;
+}
+.dark-mode .edit-btn:hover {
+    background-color: #cc9900;
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Vermelho para Excluir */
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* --- ESTILOS DE MODAIS (GERAL) --- */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilita rolagem se o conteúdo for muito grande */
+    background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+    justify-content: center; /* Centraliza horizontalmente (com display flex) */
+    align-items: center; /* Centraliza verticalmente (com display flex) */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 400px; /* Limita a largura máxima do modal */
+    position: relative;
+    animation-name: animatetop; /* Animação de entrada */
+    animation-duration: 0.4s;
+}
+
+.dark-mode .modal-content {
+    background-color: #3a3a3a;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* Animação de entrada do modal */
+@keyframes animatetop {
+    from { top: -300px; opacity: 0 }
+    to { top: 0; opacity: 1 }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.dark-mode .close-button {
+    color: #ccc;
+}
+.dark-mode .close-button:hover,
+.dark-mode .close-button:focus {
+    color: #eee;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #333;
+}
+
+.dark-mode .modal-content h3 {
+    color: #eee;
+}
+
+/* Estilos específicos para botões dentro de modais (confirmação) */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha botões à direita */
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.modal-actions button {
+    width: auto;
+    padding: 0.6rem 1.2rem;
+    margin-top: 0; /* Anula margem do botão padrão */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-cancel {
+    background-color: #6c757d; /* Cinza */
+}
+.button-cancel:hover {
+    background-color: #5a6268;
+}
+.dark-mode .button-cancel {
+    background-color: #888;
+}
+.dark-mode .button-cancel:hover {
+    background-color: #777;
+}
+
+.button-danger {
+    background-color: #dc3545; /* Vermelho */
+}
+.button-danger:hover {
+    background-color: #c82333;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        max-width: 600px;
+    }
+    
+    .password-list {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .manager-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .manager-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #addPasswordBtn, #exportPasswordsBtn, #setup2FABtn, #inicio {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .column-actions {
+        flex-direction: column;
+    }
+    
+    .password-item > div {
+        padding: 8px 10px;
+    }
+}

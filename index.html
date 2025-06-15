@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gerenciador de Senhas</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Acesso ao Gerenciador</h2>
+    <div id="themeToggle" class="theme-toggle">
+      <span class="theme-icon light-icon">☀️</span>
+      <label class="switch" for="darkModeToggle">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+      <span class="theme-icon dark-icon">🌙</span>
+    </div>
+    <form id="accessForm" novalidate>
+      <label for="userName">Nome</label>
+      <input type="text" id="userName" name="userName" required />
+      
+      <label for="userEmail">E-mail</label>
+      <input type="email" id="userEmail" name="userEmail" required />
+
+      <label for="userPassword">Senha</label>
+      <div class="password-input-group">
+        <input type="password" id="userPassword" name="userPassword" required />
+        <label class="switch" for="toggleUserPassword">
+          <input type="checkbox" id="toggleUserPassword" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <span class="mostrar-texto">mostrar</span>
+
+      <meter max="4" id="userStrengthMeter"></meter>
+      <p id="userStrengthText"></p>
+
+      <div class="form-actions" style="display: flex; justify-content: space-between; gap: 10px;">
+        <button type="button" id="loginBtn" style="flex-grow: 1;">Login</button>
+        <button type="button" id="registerBtn" style="flex-grow: 1;">Cadastrar</button>
+      </div>
+    </form>
+
+    <hr style="margin: 2rem 0;">
+
+    <div id="passwordManagerSection" style="display: none;">
+  <h2>Minhas Senhas</h2>
+  <div class="manager-actions">
+    <button id="addPasswordBtn">Adicionar Nova Senha</button>
+    <button id="exportPasswordsBtn">Exportar Senhas</button>
+    <button id="setup2FABtn">Configurar 2FA</button>
+    <button id="inicio">Inicio</button>
+  </div>
+  <div id="passwordList" class="password-list">
+    <p id="noPasswordsMessage">Nenhuma senha cadastrada ainda.</p>
+  </div>
+</div>
+
+  <div id="passwordEntryModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button password-entry-close-button">&times;</span>
+      <h3 id="passwordEntryModalTitle">Adicionar Senha</h3>
+      <form id="passwordEntryForm">
+        <input type="hidden" id="passwordId">
+
+        <label for="entryTitle">Nome Completo</label>
+        <input type="text" id="entryTitle" required>
+
+        <label for="entryURL">URL (opcional)</label>
+        <input type="url" id="entryURL">
+
+        <label for="entryUsername">Usuário</label>
+        <input type="text" id="entryUsername" required>
+
+        <label for="entryPassword">Senha</label>
+        <div class="password-input-group">
+            <input type="password" id="entryPassword" required>
+            <input type="checkbox" id="toggleEntryPassword" />
+            <label class="switch" for="toggleEntryPassword">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <span class="mostrar-texto">mostrar</span>
+        <meter max="4" id="entryStrengthMeter"></meter>
+        <p id="entryStrengthText"></p>
+
+        <button type="submit" id="savePasswordBtn">Salvar Senha</button>
+      </form>
+    </div>
+  </div>
+  <div id="confirmDeleteModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button delete-close-button">&times;</span>
+      <h3>Confirmar Exclusão</h3>
+      <p>Tem certeza de que deseja excluir esta senha?</p>
+      <div class="modal-actions">
+        <button id="cancelDeleteBtn" class="button-cancel">Cancelar</button>
+        <button id="confirmDeleteBtn" class="button-danger">Excluir</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
