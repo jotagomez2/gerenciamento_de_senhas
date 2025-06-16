@@ -72,11 +72,11 @@ xdg-open index.html
 - A aplicação funciona offline e não envia dados para servidores externos
 
 ## 👥 Desenvolvedores
-- [Seu Nome]
-- [Nome do Colaborador]
+- Jose Gomes
+- Desenvolvedor Full
 
 ## 📄 Licença
-Este projeto está licenciado sob a [Licença MIT](LICENSE)
+N/A
 
 ---
 
